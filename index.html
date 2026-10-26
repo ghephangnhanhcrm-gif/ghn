@@ -258,14 +258,14 @@ dialog::backdrop{background:rgba(0,0,0,.65)}
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: kim loại xám than + cam điện. Khung cắt góc 45° lấy từ logo GHN; tia sét là điểm nhấn duy nhất. */
 :root{
   --bg:#0d0e10; --surface:#16181b; --surface2:#1e2125; --line:#2b2f34;
   --fg:#efede9; --muted:#9ba1a8; --orange:#ff6a13; --orange-ink:#1a0d03; --red:#e5301f;
   --ok:#3ecf8e; --glow:rgba(255,106,19,.35); --hero-ov:rgba(13,14,16,.62);
-  --display:'Barlow Condensed','Arial Narrow',Impact,sans-serif;
+  --display:'Archivo','Arial',sans-serif;
   --body:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --cut:14px; color-scheme:dark;
 }
@@ -511,6 +511,41 @@ nav a.l[aria-current=page]{color:var(--fg);box-shadow:inset 0 -2px 0 var(--orang
 .tiles span{color:var(--muted);font-size:14px}
 @media (max-width:700px){.tiles{grid-template-columns:1fr 1fr}.hero .wrap{padding-block:56px 64px}}
 nav a.l{padding:8px 8px}
+
+/* ---- Chữ: Archivo giãn rộng, viết thường có dấu, cân đối ---- */
+h1,h2,h3{font-family:var(--display);font-stretch:112%;text-transform:none;letter-spacing:-.02em;line-height:1.12}
+.hero h1{font-size:clamp(34px,4.6vw,64px);font-weight:800;line-height:1.08;max-width:13em}
+.hero .lead{font-size:18px;line-height:1.65}
+.sec-h h2,.about .txt h2{font-size:clamp(28px,3.4vw,44px);font-weight:800}
+.quote h2{font-size:26px}.dlg-h h2{font-size:26px}
+.card h3,.panel h3{font-size:21px;font-weight:700}
+.veh h3,.step h3{font-size:19px;font-weight:700}
+.vid h3{font-size:24px}
+.tiles b{font-family:var(--display);font-stretch:112%;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.ord .route{font:700 19px/1.2 var(--display);font-stretch:112%;text-transform:none}
+.brand b{font:800 15px/1 var(--display);font-stretch:118%;letter-spacing:.04em}
+.stats b{font-family:var(--display);font-stretch:112%;font-weight:800}
+.sec-h{max-width:40em;gap:14px}
+section{padding-block:80px}
+
+/* ---- Chuyển động mượt ---- */
+:root{--ease:cubic-bezier(.22,.61,.36,1)}
+nav a.l,.btn,.icon-btn,.chip,.tiles a,.card,.veh,.step,.ord,.panel{transition:color .35s var(--ease),background-color .35s var(--ease),border-color .35s var(--ease),box-shadow .45s var(--ease),transform .45s var(--ease),filter .3s var(--ease)}
+nav a.l{position:relative;box-shadow:none!important}
+nav a.l::after{content:"";position:absolute;left:8px;right:8px;bottom:2px;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+nav a.l:hover::after,nav a.l[aria-current=page]::after{transform:scaleX(1)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.card:hover,.veh:hover,.ord:hover,.step:hover,.tiles a:hover{transform:translateY(-6px);box-shadow:0 22px 40px -22px rgba(0,0,0,.55);border-color:var(--orange)}
+.card .ph img{transition:transform 1.1s var(--ease)}
+.card:hover .ph img{transform:scale(1.06)}
+.hero-bg{animation:kb 24s ease-in-out infinite alternate;will-change:transform}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+[data-pg].on{animation:pgin .7s var(--ease) both}
+@keyframes pgin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero .wrap>div>*{animation:rise .9s var(--ease) both}
+.hero .wrap>div>*:nth-child(2){animation-delay:.08s}.hero .wrap>div>*:nth-child(3){animation-delay:.16s}.hero .wrap>div>*:nth-child(4){animation-delay:.24s}.hero .wrap>div>*:nth-child(5){animation-delay:.32s}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 
 <header class="top">
@@ -545,7 +580,7 @@ nav a.l{padding:8px 8px}
   <div class="wrap">
     <div>
       <span class="eyebrow" style="color:#ffb27d">Vận tải ghép hàng · Bao xe · Siêu trường siêu trọng</span>
-      <h1>Ghép hàng nhanh.<br>Giao <em>nhanh.</em><br>Tối ưu chi phí.</h1>
+      <h1>Ghép hàng nhanh.<br>Giao <em>nhanh.</em> Tối ưu chi phí.</h1>
       <p class="lead">Điều phối hơn 4.500 đầu xe từ 2 đến 8 tấn, xe 3–4–5 chân, đầu kéo với mooc chuyên dụng. Từ vài kiện lẻ đến cấu kiện siêu trường siêu trọng, báo giá rõ ràng trước khi bốc hàng.</p>
       <div class="cta">
         <a class="btn" href="#bao-gia">Tính cước ngay</a>
